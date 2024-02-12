@@ -4,8 +4,12 @@ const Timer =()=>{
     const [time,setTime]= useState(0);
 
     useEffect (()=>{
-      const time = setTimeOut(()=>setTime(time + 1), 1000)
-    }, [])
+      const time = setInterval(()=>setTime(time + 1), 1000);
+
+      return function(){
+        clearInterval(time);
+      }
+    },[time])
 
     return(
        <div>
